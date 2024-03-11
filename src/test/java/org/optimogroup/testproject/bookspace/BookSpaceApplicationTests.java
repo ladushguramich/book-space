@@ -1,4 +1,4 @@
-package org.optiomogroup.testproject.bookspace;
+package org.optimogroup.testproject.bookspace;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

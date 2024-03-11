@@ -1,6 +1,6 @@
-package org.optiomogroup.testproject.bookspace.repositories;
+package org.optimogroup.testproject.bookspace.repositories;
 
-import org.optiomogroup.testproject.bookspace.models.Book;
+import org.optimogroup.testproject.bookspace.models.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

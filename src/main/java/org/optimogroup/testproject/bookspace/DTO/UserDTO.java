@@ -1,4 +1,4 @@
-package org.optiomogroup.testproject.bookspace.DTO;
+package org.optimogroup.testproject.bookspace.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,10 +10,10 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
-    private BigInteger id;
-    private String first_nanme;
-    private String last_name;
+    private Integer id;
+    private String firstName;
+    private String lastName;
     private String phone;
     private String hash;
-    private BigInteger list_of_books_taken;
+    private Integer listOfBooksTaken;
 }
