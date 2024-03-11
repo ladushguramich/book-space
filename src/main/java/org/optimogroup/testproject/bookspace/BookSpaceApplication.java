@@ -1,4 +1,4 @@
-package org.optiomogroup.testproject.bookspace;
+package org.optimogroup.testproject.bookspace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
