@@ -75,6 +75,21 @@ public class BookController {
         }
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Book>> getBookByUser(@PathVariable Long id) {
+        try {
+            List<Book> books = bookService.getBooksByUser(id);
+            if (!books.isEmpty()) {
+                return ResponseEntity.ok(books);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
     @PutMapping("/return/{bookId}/{userId}")
     public ResponseEntity<String> returnBook(@PathVariable Long bookId) {
         try {
@@ -113,6 +128,5 @@ public class BookController {
             e.printStackTrace();
             throw e;
         }
-
     }
 }

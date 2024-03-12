@@ -116,6 +116,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> getBooksByUser(Long id) {
+        try {
+            List<Book> books = bookRepository.findBooksByUser(id);
+            return books;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
     public List<Book> findBooksByAuthorAndTitleAndIsbn(String author, String title, String isbn) {
         if (author != null && title != null && isbn != null) {
             return bookRepository.findBooksByAuthorAndTitleAndIsbn(author, title, isbn);
