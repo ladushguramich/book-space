@@ -28,7 +28,7 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "\"user\"")
     private User user;
 

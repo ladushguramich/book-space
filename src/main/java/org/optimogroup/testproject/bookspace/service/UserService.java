@@ -5,6 +5,8 @@ import org.optimogroup.testproject.bookspace.DTO.UserDTO;
 import org.optimogroup.testproject.bookspace.models.Book;
 import org.optimogroup.testproject.bookspace.models.User;
 
+import java.util.Set;
+
 public interface UserService {
 
     User createUser(UserDTO userDTO);
@@ -14,5 +16,4 @@ public interface UserService {
     User getUser(Integer id);
 
     void DeleteUser(Integer id);
-
 }

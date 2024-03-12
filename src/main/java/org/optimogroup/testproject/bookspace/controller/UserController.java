@@ -2,11 +2,14 @@ package org.optimogroup.testproject.bookspace.controller;
 
 import lombok.AllArgsConstructor;
 import org.optimogroup.testproject.bookspace.DTO.UserDTO;
+import org.optimogroup.testproject.bookspace.models.Book;
 import org.optimogroup.testproject.bookspace.models.User;
 import org.optimogroup.testproject.bookspace.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor

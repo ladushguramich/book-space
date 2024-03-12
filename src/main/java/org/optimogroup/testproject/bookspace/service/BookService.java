@@ -15,13 +15,13 @@ public interface BookService {
 
     void deleteBook(Long id);
 
-    Book takeBook(Long bookId, Integer userID);
+    Book takeBook(Long bookId, Integer userId);
 
     Book returnBook(Long id);
     List<Book> findBooksByAuthor(String author);
     List<Book> findBooksByTitle(String title);
     List<Book> findBooksByIsbn(String isbn);
     List<Book> findAllBooks();
-
+    List<Book> getBooksByUser(Long id);
     List<Book> findBooksByAuthorAndTitleAndIsbn(String author, String title, String isbn);
 }

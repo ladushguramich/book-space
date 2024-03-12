@@ -2,9 +2,7 @@ package org.optimogroup.testproject.bookspace.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.mapping.List;
 import org.optimogroup.testproject.bookspace.DTO.UserDTO;
-import org.optimogroup.testproject.bookspace.models.Book;
 import org.optimogroup.testproject.bookspace.models.User;
 import org.optimogroup.testproject.bookspace.repositories.UserRepository;
 import org.springframework.stereotype.Service;
