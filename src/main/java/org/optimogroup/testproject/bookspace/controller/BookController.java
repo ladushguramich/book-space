@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/book")
@@ -28,7 +30,7 @@ public class BookController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Integer id, @RequestBody BookDTO bookDTO) {
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
         try {
             Book updateBook = bookService.updateBook(id, bookDTO);
             return ResponseEntity.ok(updateBook);
@@ -39,7 +41,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Integer id) {
+    public ResponseEntity<Book> getBook(@PathVariable Long id) {
         try {
             Book book = bookService.getBook(id);
             if (book != null) {
@@ -54,12 +56,63 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable Integer id) {
+    public ResponseEntity deleteById(@PathVariable Long id) {
         try {
-                bookService.deleteBook(id);
-                return ResponseEntity.ok().build();
+            bookService.deleteBook(id);
+            return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @PutMapping("/take/{bookId}/{userId}")
+    public ResponseEntity<String> takeBook(@PathVariable Long bookId, @PathVariable Integer userId) {
+        try {
+            bookService.takeBook(bookId, userId);
+            return ResponseEntity.ok("Book taken successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/return/{bookId}/{userId}")
+    public ResponseEntity<String> returnBook(@PathVariable Long bookId) {
+        try {
+            bookService.returnBook(bookId);
+            return ResponseEntity.ok("Book returned successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Book>> findBooksByParams(
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String isbn
+    ) {
+        try {
+            List<Book> foundBooks;
+
+            if (author != null) {
+                foundBooks = bookService.findBooksByAuthor(author);
+            } else if (title != null) {
+                foundBooks = bookService.findBooksByTitle(title);
+            } else if (isbn != null) {
+                foundBooks = bookService.findBooksByIsbn(isbn);
+            } else {
+                foundBooks = bookService.findAllBooks();
+            }
+
+            if (!foundBooks.isEmpty()) {
+                return ResponseEntity.ok(foundBooks);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
     }
 }

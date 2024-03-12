@@ -3,6 +3,7 @@ package org.optimogroup.testproject.bookspace.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.mapping.List;
 
 import java.math.BigInteger;
 

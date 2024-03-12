@@ -17,7 +17,7 @@ public class Book {
     @Id
     @SequenceGenerator(name = "BOOK_ID_GENERATOR", schema = "public", sequenceName = "book_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOOK_ID_GENERATOR")
-    private Integer id;
+    private Long id;
 
     @Column(name = "author")
     private String author;
@@ -28,8 +28,9 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "\"user\"")
-    private Integer user;
+    @ManyToOne
+    @JoinColumn(name = "\"user\"")
+    private User user;
 
     @Column(name = "status")
     private boolean status;

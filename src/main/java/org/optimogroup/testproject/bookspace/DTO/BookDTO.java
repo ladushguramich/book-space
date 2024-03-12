@@ -10,7 +10,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookDTO {
-    private Integer id;
+    private Long id;
     private String author;
     private String title;
     private String isbn;

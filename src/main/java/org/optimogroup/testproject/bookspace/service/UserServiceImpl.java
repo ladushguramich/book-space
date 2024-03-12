@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
         createUser.setLastName(userDTO.getLastName());
         createUser.setPhone(userDTO.getPhone());
         createUser.setHash(userDTO.getHash());
-        createUser.setListOfBooksTaken(userDTO.getListOfBooksTaken());
-        User savedUser = userRepository.save(createUser);
-        System.out.println(savedUser);
+//        createUser.setListOfBooksTaken(userDTO.getListOfBooksTaken());
+//        User savedUser = userRepository.save(createUser);
+//        System.out.println(savedUser);
         return userRepository.save(createUser);
     }
 
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         updateUser.setLastName(userDTO.getLastName());
         updateUser.setPhone(userDTO.getPhone());
         updateUser.setHash(userDTO.getHash());
-        updateUser.setListOfBooksTaken(userDTO.getListOfBooksTaken());
+//        updateUser.setListOfBooksTaken(userDTO.getListOfBooksTaken());
 
         return userRepository.save(updateUser);
     }
