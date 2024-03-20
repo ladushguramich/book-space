@@ -17,9 +17,9 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO bookDTO) {
         try {
-            Book createBook = bookService.createBook(bookDTO);
+            BookDTO createBook = bookService.createBook(bookDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(createBook);
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,9 +30,9 @@ public class BookController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
         try {
-            Book updateBook = bookService.updateBook(id, bookDTO);
+            BookDTO updateBook = bookService.updateBook(id, bookDTO);
             return ResponseEntity.ok(updateBook);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Long id) {
+    public ResponseEntity<?> getBook(@PathVariable Long id) {
         try {
             Book book = bookService.getBook(id);
             if (book != null) {

@@ -16,5 +16,5 @@ public class UserDTO {
     private String lastName;
     private String phone;
     private String hash;
-    private Integer listOfBooksTaken;
+//    private Integer listOfBooksTaken;
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface BookService {
 
-    Book createBook(BookDTO bookDTO);
+    BookDTO createBook(BookDTO bookDTO);
 
-    Book updateBook(Long id, BookDTO bookDTO);
+    BookDTO updateBook(Long id, BookDTO bookDTO);
 
     Book getBook(Long id);
 
@@ -24,4 +24,6 @@ public interface BookService {
     List<Book> findAllBooks();
     List<Book> getBooksByUser(Long id);
     List<Book> findBooksByAuthorAndTitleAndIsbn(String author, String title, String isbn);
+
+    BookDTO convertToDTO(Book book);
 }

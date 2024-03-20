@@ -5,7 +5,7 @@ import org.optimogroup.testproject.bookspace.authController.AuthenticationReques
 import org.optimogroup.testproject.bookspace.authController.AuthenticationResponse;
 import org.optimogroup.testproject.bookspace.authController.RegisterRequest;
 import org.optimogroup.testproject.bookspace.config.JwtService;
-import org.optimogroup.testproject.bookspace.models.Role;
+//import org.optimogroup.testproject.bookspace.models.Role;
 import org.optimogroup.testproject.bookspace.models.User;
 import org.optimogroup.testproject.bookspace.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;

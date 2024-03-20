@@ -2,10 +2,10 @@ package org.optimogroup.testproject.bookspace.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.optimogroup.testproject.bookspace.models.User;
-import org.optimogroup.testproject.bookspace.repositories.BookRepository;
 import org.optimogroup.testproject.bookspace.DTO.BookDTO;
 import org.optimogroup.testproject.bookspace.models.Book;
+import org.optimogroup.testproject.bookspace.models.User;
+import org.optimogroup.testproject.bookspace.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,32 +19,29 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public Book createBook(BookDTO bookDTO) {
+    public BookDTO createBook(BookDTO bookDTO) {
         Book createBook = new Book();
 
-        createBook.setId(bookDTO.getId());
+//        createBook.setId(bookDTO.getId());
         createBook.setAuthor(bookDTO.getAuthor());
         createBook.setTitle(bookDTO.getTitle());
         createBook.setIsbn(bookDTO.getIsbn());
 //        createBook.setUser(bookDTO.getUser());
         createBook.setStatus(bookDTO.isStatus());
 
-        return bookRepository.save(createBook);
+        createBook = bookRepository.save(createBook);
+
+        return convertToDTO(createBook);
     }
 
+
     @Override
-    public Book updateBook(Long id, BookDTO bookDTO) {
+    public BookDTO updateBook(Long id, BookDTO bookDTO) {
         Book updateBook = bookRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Book not found: " + id)
         );
-
-        updateBook.setAuthor(bookDTO.getAuthor());
-        updateBook.setTitle(bookDTO.getTitle());
-        updateBook.setIsbn(bookDTO.getIsbn());
-//        updateBook.setUser(bookDTO.getUser());
-        updateBook.setStatus(bookDTO.isStatus());
-
-        return bookRepository.save(updateBook);
+        updateBook = getBook(updateBook(id, bookDTO).getId());
+        return convertToDTO(updateBook);
     }
 
     @Override
@@ -120,7 +117,7 @@ public class BookServiceImpl implements BookService {
         try {
             List<Book> books = bookRepository.findBooksByUser(id);
             return books;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
@@ -138,5 +135,22 @@ public class BookServiceImpl implements BookService {
             return bookRepository.findBooksByIsbn(isbn);
         }
         return bookRepository.findAll();
+    }
+
+
+    public BookDTO convertToDTO(Book book) {
+        try {
+            return BookDTO.builder()
+                    .id(book.getId())
+                    .author(book.getAuthor())
+                    .title(book.getTitle())
+                    .isbn(book.getIsbn())
+                    .status(book.isStatus())
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
     }
 }
